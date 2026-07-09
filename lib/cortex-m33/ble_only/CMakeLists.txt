@@ -6,4 +6,7 @@
 
 set(SID_LIB_DIR ${ZEPHYR_BASE}/../sidewalk/lib/cortex-m33/ble_only)
 
-zephyr_library_link_libraries(${SID_LIB_DIR}/libsid_protocol_ble.a)
+zephyr_library_link_libraries(
+    ${SID_LIB_DIR}/libsid_cli_all.a
+    ${SID_LIB_DIR}/libsid_protocol_ble.a
+)
