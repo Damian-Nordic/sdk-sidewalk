@@ -331,13 +331,15 @@ static void app_event_enter_dfu_mode(sidewalk_ctx_t *sid, void *ctx)
 	}
 }
 // shell handlers
-int cmd_nordic_dfu(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_nordic_dfu(const struct shell *shell, int32_t argc,
+					       const char **argv)
 {
 	sidewalk_event_send(app_event_enter_dfu_mode, (void *)shell, NULL);
 	return 0;
 }
 
-int cmd_sid_init(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_init(const struct shell *shell, int32_t argc,
+					     const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_INIT_ARG_REQUIRED, CMD_SID_INIT_ARG_OPTIONAL);
 
@@ -361,14 +363,16 @@ int cmd_sid_init(const struct shell *shell, int32_t argc, const char **argv)
 	return cmd_sid_simple_param(dut_event_init, &link_type);
 }
 
-int cmd_sid_deinit(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_deinit(const struct shell *shell, int32_t argc,
+					       const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_DEINIT_ARG_REQUIRED, CMD_SID_DEINIT_ARG_OPTIONAL);
 
 	return sidewalk_event_send(dut_event_deinit, NULL, NULL);
 }
 
-int cmd_sid_start(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_start(const struct shell *shell, int32_t argc,
+					      const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_START_ARG_REQUIRED, CMD_SID_START_ARG_OPTIONAL);
 	uint32_t link_type = 0;
@@ -385,7 +389,8 @@ int cmd_sid_start(const struct shell *shell, int32_t argc, const char **argv)
 	return cmd_sid_simple_param(dut_event_start, &link_type);
 }
 
-int cmd_sid_stop(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_stop(const struct shell *shell, int32_t argc,
+					     const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_STOP_ARG_REQUIRED, CMD_SID_STOP_ARG_OPTIONAL);
 	uint32_t link_type = 0;
@@ -415,7 +420,8 @@ static void free_sid_send_event_ctx(void *ctx)
 	sid_hal_free(send);
 }
 
-int cmd_sid_send(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_send(const struct shell *shell, int32_t argc,
+					     const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_SEND_ARG_REQUIRED, CMD_SID_SEND_ARG_OPTIONAL);
 
@@ -620,7 +626,8 @@ int cmd_sid_send(const struct shell *shell, int32_t argc, const char **argv)
 	return 0;
 }
 
-int cmd_sid_factory_reset(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_factory_reset(const struct shell *shell, int32_t argc,
+						      const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_FACTORY_RESET_ARG_REQUIRED,
 			     CMD_SID_FACTORY_RESET_ARG_OPTIONAL);
@@ -634,7 +641,8 @@ int cmd_sid_factory_reset(const struct shell *shell, int32_t argc, const char **
 	return 0;
 }
 
-int cmd_sid_get_mtu(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_get_mtu(const struct shell *shell, int32_t argc,
+						const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_GET_MTU_ARG_REQUIRED, CMD_SID_GET_MTU_ARG_OPTIONAL);
 
@@ -662,7 +670,8 @@ int cmd_sid_get_mtu(const struct shell *shell, int32_t argc, const char **argv)
 	return cmd_sid_simple_param(dut_event_get_mtu, &link_mask);
 }
 
-int cmd_sid_option_battery(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_battery(const struct shell *shell, int32_t argc,
+						       const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_SET_OPTION_B_ARG_REQUIRED,
 			     CMD_SID_SET_OPTION_B_ARG_OPTIONAL);
@@ -693,7 +702,8 @@ int cmd_sid_option_battery(const struct shell *shell, int32_t argc, const char *
 	return 0;
 }
 
-int cmd_sid_option_lp_set(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_lp_set(const struct shell *shell, int32_t argc,
+						      const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_SET_OPTION_LP_SET_ARG_REQUIRED,
 			     CMD_SID_SET_OPTION_LP_SET_ARG_OPTIONAL);
@@ -779,7 +789,8 @@ int cmd_sid_option_lp_set(const struct shell *shell, int32_t argc, const char **
 	return 0;
 }
 
-int cmd_sid_option_lp_get_l2(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_lp_get_l2(const struct shell *shell,
+							 int32_t argc, const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, 1, 0);
 
@@ -793,7 +804,8 @@ int cmd_sid_option_lp_get_l2(const struct shell *shell, int32_t argc, const char
 	return 0;
 }
 
-int cmd_sid_option_lp_get_l3(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_lp_get_l3(const struct shell *shell,
+							 int32_t argc, const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, 1, 0);
 
@@ -807,7 +819,8 @@ int cmd_sid_option_lp_get_l3(const struct shell *shell, int32_t argc, const char
 	return 0;
 }
 
-int cmd_sid_option_d(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_d(const struct shell *shell, int32_t argc,
+						 const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_SET_OPTION_D_ARG_REQUIRED,
 			     CMD_SID_SET_OPTION_D_ARG_OPTIONAL);
@@ -833,7 +846,8 @@ int cmd_sid_option_d(const struct shell *shell, int32_t argc, const char **argv)
 	return 0;
 }
 
-int cmd_sid_option_gd(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_gd(const struct shell *shell, int32_t argc,
+						  const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, 1, 0);
 
@@ -846,7 +860,8 @@ int cmd_sid_option_gd(const struct shell *shell, int32_t argc, const char **argv
 	return 0;
 }
 
-int cmd_sid_option_gm(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_gm(const struct shell *shell, int32_t argc,
+						  const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, 1, 0);
 
@@ -859,7 +874,8 @@ int cmd_sid_option_gm(const struct shell *shell, int32_t argc, const char **argv
 	return 0;
 }
 
-int cmd_sid_option_gml(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_gml(const struct shell *shell, int32_t argc,
+						   const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, 1, 0);
 
@@ -872,7 +888,8 @@ int cmd_sid_option_gml(const struct shell *shell, int32_t argc, const char **arg
 	return 0;
 }
 
-int cmd_sid_option_sid_id(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_sid_id(const struct shell *shell, int32_t argc,
+						      const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, 1, 0);
 
@@ -885,7 +902,8 @@ int cmd_sid_option_sid_id(const struct shell *shell, int32_t argc, const char **
 	return 0;
 }
 
-int cmd_sid_option_st_get(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_st_get(const struct shell *shell, int32_t argc,
+						      const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, 1, 0);
 
@@ -898,7 +916,8 @@ int cmd_sid_option_st_get(const struct shell *shell, int32_t argc, const char **
 	return 0;
 }
 
-int cmd_sid_option_st_clear(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_st_clear(const struct shell *shell, int32_t argc,
+							const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, 1, 0);
 
@@ -911,7 +930,8 @@ int cmd_sid_option_st_clear(const struct shell *shell, int32_t argc, const char 
 	return 0;
 }
 
-int cmd_sid_option_m(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_m(const struct shell *shell, int32_t argc,
+						 const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_SET_OPTION_M_ARG_REQUIRED,
 			     CMD_SID_SET_OPTION_M_ARG_OPTIONAL);
@@ -936,7 +956,8 @@ int cmd_sid_option_m(const struct shell *shell, int32_t argc, const char **argv)
 	return 0;
 }
 
-int cmd_sid_option_c(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_c(const struct shell *shell, int32_t argc,
+						 const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_SET_OPTION_C_ARG_REQUIRED,
 			     CMD_SID_SET_OPTION_C_ARG_OPTIONAL);
@@ -991,7 +1012,8 @@ int cmd_sid_option_c(const struct shell *shell, int32_t argc, const char **argv)
 	return 0;
 }
 
-int cmd_sid_option_ml(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_ml(const struct shell *shell, int32_t argc,
+						  const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_SET_OPTION_ML_ARG_REQUIRED,
 			     CMD_SID_SET_OPTION_ML_ARG_OPTIONAL);
@@ -1015,7 +1037,8 @@ int cmd_sid_option_ml(const struct shell *shell, int32_t argc, const char **argv
 	return 0;
 }
 
-int cmd_sid_option_gc(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_gc(const struct shell *shell, int32_t argc,
+						  const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_SET_OPTION_GC_ARG_REQUIRED,
 			     CMD_SID_SET_OPTION_GC_ARG_OPTIONAL);
@@ -1130,7 +1153,8 @@ static int parse_ble_cfg_conn_params(const struct shell *shell, int argc, const 
 	return 0;
 }
 
-int cmd_sid_option_ble_cfg_set(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_ble_cfg_set(const struct shell *shell,
+							   int32_t argc, const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_OPTION_BLE_CFG_SET_ARG_REQUIRED,
 			     CMD_SID_OPTION_BLE_CFG_SET_ARG_OPTIONAL);
@@ -1192,7 +1216,8 @@ int cmd_sid_option_ble_cfg_set(const struct shell *shell, int32_t argc, const ch
 	return 0;
 }
 
-int cmd_sid_option_ble_cfg_get(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_ble_cfg_get(const struct shell *shell,
+							   int32_t argc, const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_OPTION_BLE_CFG_GET_ARG_REQUIRED,
 			     CMD_SID_OPTION_BLE_CFG_GET_ARG_OPTIONAL);
@@ -1221,7 +1246,8 @@ int cmd_sid_option_ble_cfg_get(const struct shell *shell, int32_t argc, const ch
 	return 0;
 }
 
-int cmd_sid_last_status(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_last_status(const struct shell *shell, int32_t argc,
+						    const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_LAST_STATUS_ARG_REQUIRED,
 			     CMD_SID_LAST_STATUS_ARG_OPTIONAL);
@@ -1232,7 +1258,8 @@ int cmd_sid_last_status(const struct shell *shell, int32_t argc, const char **ar
 	return 0;
 }
 
-int cmd_sid_conn_request(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_conn_request(const struct shell *shell, int32_t argc,
+						     const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_CONN_REQUEST_ARG_REQUIRED,
 			     CMD_SID_CONN_REQUEST_ARG_OPTIONAL);
@@ -1254,7 +1281,8 @@ int cmd_sid_conn_request(const struct shell *shell, int32_t argc, const char **a
 	return cmd_sid_simple_param(dut_event_conn_req, &conn_req);
 }
 
-int cmd_sid_get_time(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_get_time(const struct shell *shell, int32_t argc,
+						 const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_GET_TIME_ARG_REQUIRED, CMD_SID_GET_TIME_ARG_OPTIONAL);
 
@@ -1267,7 +1295,8 @@ int cmd_sid_get_time(const struct shell *shell, int32_t argc, const char **argv)
 	return cmd_sid_simple_param(dut_event_get_time, &time_type);
 }
 
-int cmd_sid_set_dst_id(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_set_dst_id(const struct shell *shell, int32_t argc,
+						   const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_SET_DST_ID_ARG_REQUIRED,
 			     CMD_SID_SET_DST_ID_ARG_OPTIONAL);
@@ -1276,7 +1305,8 @@ int cmd_sid_set_dst_id(const struct shell *shell, int32_t argc, const char **arg
 	return cmd_sid_simple_param(dut_event_set_dest_id, &dst_id);
 }
 
-int cmd_sid_set_send_link(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_set_send_link(const struct shell *shell, int32_t argc,
+						      const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_SET_SEND_LINK_ARG_REQUIRED,
 			     CMD_SID_SET_SEND_LINK_ARG_OPTIONAL);
@@ -1309,7 +1339,8 @@ int cmd_sid_set_send_link(const struct shell *shell, int32_t argc, const char **
 	return 0;
 }
 
-int cmd_sid_set_rsp_id(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_set_rsp_id(const struct shell *shell, int32_t argc,
+						   const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_SET_RSP_ID_ARG_REQUIRED,
 			     CMD_SID_SET_RSP_ID_ARG_OPTIONAL);
@@ -1326,7 +1357,8 @@ int cmd_sid_set_rsp_id(const struct shell *shell, int32_t argc, const char **arg
 	return 0;
 }
 
-int cmd_sid_sdk_version(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_sdk_version(const struct shell *shell, int32_t argc,
+						    const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_SDK_VERSION_DESCRIPTION_ARG_REQUIRED,
 			     CMD_SID_SDK_VERSION_DESCRIPTION_ARG_OPTIONAL);
@@ -1346,7 +1378,8 @@ int cmd_sid_sdk_version(const struct shell *shell, int32_t argc, const char **ar
 	return 0;
 }
 
-int cmd_sid_sdk_config(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_sdk_config(const struct shell *shell, int32_t argc,
+						   const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_SDK_CONFIG_DESCRIPTION_ARG_REQUIRED,
 			     CMD_SID_SDK_CONFIG_DESCRIPTION_ARG_OPTIONAL);
@@ -1397,7 +1430,8 @@ struct sid_ep_cfg {
 extern void sid_ep_cfg_get_active_cap(struct sid_ep_cap *cap, bool clear);
 extern void sid_ep_cfg_get_active_cfg(struct sid_ep_cfg *cfg, bool clear);
 
-int cmd_sid_ep_cfg(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_ep_cfg(const struct shell *shell, int32_t argc,
+					       const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_EP_CFG_DESCRIPTION_ARG_REQUIRED,
 			     CMD_SID_EP_CFG_DESCRIPTION_ARG_OPTIONAL);
@@ -1528,7 +1562,8 @@ extern sid_error_t sid_metrics_core_cli_execute_action(enum sid_metrics_core_act
 						       enum sid_metrics_category_ids category,
 						       uint32_t raw_bitmask);
 
-int cmd_sid_print_metrics(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_print_metrics(const struct shell *shell, int32_t argc,
+						      const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_PRINT_METRICS_DESCRIPTION_ARG_REQUIRED,
 			     CMD_SID_PRINT_METRICS_DESCRIPTION_ARG_OPTIONAL);
@@ -1540,7 +1575,8 @@ int cmd_sid_print_metrics(const struct shell *shell, int32_t argc, const char **
 	return 0;
 }
 
-int cmd_sid_clear_metrics(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_clear_metrics(const struct shell *shell, int32_t argc,
+						      const char **argv)
 {
 	CHECK_ARGUMENT_COUNT(argc, CMD_SID_PRINT_METRICS_DESCRIPTION_ARG_REQUIRED,
 			     CMD_SID_PRINT_METRICS_DESCRIPTION_ARG_OPTIONAL);
@@ -1553,7 +1589,8 @@ int cmd_sid_clear_metrics(const struct shell *shell, int32_t argc, const char **
 }
 
 #ifdef CONFIG_SIDEWALK_TRACE_HEAP
-int cmd_sid_print_heap_stats(const struct shell *shell, int32_t argc, const char **argv)
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_print_heap_stats(const struct shell *shell, int32_t argc,
+							 const char **argv)
 {
 	print_open_buffers();
 	return 0;

@@ -280,50 +280,93 @@
 #define CMD_SID_CLEAR_METRICS_DESCRIPTION_ARG_REQUIRED 2
 #define CMD_SID_CLEAR_METRICS_DESCRIPTION_ARG_OPTIONAL 0
 
-int cmd_nordic_dfu(const struct shell *shell, int32_t argc, const char **argv);
+#if defined(CONFIG_ZTEST) || defined(ZTEST_UNITTEST)
+#define APP_SHELL_CMD_HANDLER_SCOPE
+#else
+#define APP_SHELL_CMD_HANDLER_SCOPE static
+#endif
 
-int cmd_sid_init(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_deinit(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_start(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_stop(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_send(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_factory_reset(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_get_mtu(const struct shell *shell, int32_t argc, const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_nordic_dfu(const struct shell *shell, int32_t argc,
+					       const char **argv);
 
-int cmd_sid_option_battery(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_option_lp_set(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_option_lp_get_l2(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_option_lp_get_l3(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_option_d(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_option_gd(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_option_gm(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_option_gml(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_option_st_get(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_option_st_clear(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_option_m(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_option_c(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_option_ml(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_option_gc(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_option_sid_id(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_option_ble_cfg_set(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_option_ble_cfg_get(const struct shell *shell, int32_t argc, const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_init(const struct shell *shell, int32_t argc,
+					     const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_deinit(const struct shell *shell, int32_t argc,
+					       const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_start(const struct shell *shell, int32_t argc,
+					      const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_stop(const struct shell *shell, int32_t argc,
+					     const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_send(const struct shell *shell, int32_t argc,
+					     const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_factory_reset(const struct shell *shell, int32_t argc,
+						      const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_get_mtu(const struct shell *shell, int32_t argc,
+						const char **argv);
 
-int cmd_sid_last_status(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_conn_request(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_get_time(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_set_dst_id(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_set_send_link(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_set_rsp_id(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_sdk_version(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_sdk_config(const struct shell *shell, int32_t argc, const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_battery(const struct shell *shell, int32_t argc,
+						       const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_lp_set(const struct shell *shell, int32_t argc,
+						      const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_lp_get_l2(const struct shell *shell, int32_t argc,
+							 const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_lp_get_l3(const struct shell *shell, int32_t argc,
+							 const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_d(const struct shell *shell, int32_t argc,
+						 const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_gd(const struct shell *shell, int32_t argc,
+						  const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_gm(const struct shell *shell, int32_t argc,
+						  const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_gml(const struct shell *shell, int32_t argc,
+						   const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_st_get(const struct shell *shell, int32_t argc,
+						      const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_st_clear(const struct shell *shell, int32_t argc,
+							const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_m(const struct shell *shell, int32_t argc,
+						 const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_c(const struct shell *shell, int32_t argc,
+						 const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_ml(const struct shell *shell, int32_t argc,
+						  const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_gc(const struct shell *shell, int32_t argc,
+						  const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_sid_id(const struct shell *shell, int32_t argc,
+						      const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_ble_cfg_set(const struct shell *shell,
+							   int32_t argc, const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_option_ble_cfg_get(const struct shell *shell,
+							   int32_t argc, const char **argv);
 
-int cmd_sid_ep_cfg(const struct shell *shell, int32_t argc, const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_last_status(const struct shell *shell, int32_t argc,
+						    const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_conn_request(const struct shell *shell, int32_t argc,
+						     const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_get_time(const struct shell *shell, int32_t argc,
+						 const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_set_dst_id(const struct shell *shell, int32_t argc,
+						   const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_set_send_link(const struct shell *shell, int32_t argc,
+						      const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_set_rsp_id(const struct shell *shell, int32_t argc,
+						   const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_sdk_version(const struct shell *shell, int32_t argc,
+						    const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_sdk_config(const struct shell *shell, int32_t argc,
+						   const char **argv);
 
-int cmd_sid_print_metrics(const struct shell *shell, int32_t argc, const char **argv);
-int cmd_sid_clear_metrics(const struct shell *shell, int32_t argc, const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_ep_cfg(const struct shell *shell, int32_t argc,
+					       const char **argv);
+
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_print_metrics(const struct shell *shell, int32_t argc,
+						      const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_clear_metrics(const struct shell *shell, int32_t argc,
+						      const char **argv);
 
 #ifdef CONFIG_SIDEWALK_TRACE_HEAP
-int cmd_sid_print_heap_stats(const struct shell *shell, int32_t argc, const char **argv);
+APP_SHELL_CMD_HANDLER_SCOPE int cmd_sid_print_heap_stats(const struct shell *shell, int32_t argc,
+							 const char **argv);
 void print_open_buffers(void);
 #endif
 

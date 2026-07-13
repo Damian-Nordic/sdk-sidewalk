@@ -41,7 +41,7 @@ struct dult_set_params {
 	uint8_t battery_level;
 };
 
-void location_callback(const struct sid_location_result *const result, void *context)
+static void location_callback(const struct sid_location_result *const result, void *context)
 {
 	LOG_INF("loc send result: %d", result->err);
 	LOG_INF("loc effort mode: %d", result->mode);
